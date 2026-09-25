@@ -13,13 +13,15 @@ const translations: Record<string, any> = {
     whatWeBuildDesc: "KADEX brings together data products and business automation solutions under one technology brand. We create tools that remove repetitive work, organize information and help businesses operate more efficiently.",
     productsSection: "02 / PRODUCTS",
     solutionsSection: "03 / AUTOMATION SOLUTIONS",
-    aboutSection: "04 / KADEX",
+    aboutSection: "04 / KADEX & CONNECT",
     aboutTitle: "ONE BRAND. MULTIPLE SOLUTIONS.",
     aboutDesc: "KADEX is a technology brand focused on practical business solutions. From verified B2B data to internal business automation and customer communication, the goal is simple: turn repetitive processes into systems.",
     dataLabel: "DATA",
     dataSub: "VERIFIED B2B PRODUCTS",
     automationLabel: "AUTOMATION",
     automationSub: "BUSINESS SOFTWARE",
+    connectTitle: "CONNECT WITH THE FOUNDER",
+    connectDesc: "Explore professional networks and direct channels.",
     ctaHeader: "KADEX / GET STARTED",
     ctaTitle: "BUILD SMARTER.",
     navProducts: "PRODUCTS",
@@ -75,13 +77,15 @@ const translations: Record<string, any> = {
     whatWeBuildDesc: "KADEX об'єднує продукти даних та рішення для автоматизації бізнесу під єдиним технологічним брендом. Ми створюємо інструменти, які усувають рутинну роботу, впорядковують інформацію та допомагають компаніям працювати ефективніше.",
     productsSection: "02 / ПРОДУКТИ",
     solutionsSection: "03 / РІШЕННЯ АВТОМАТИЗАЦІЇ",
-    aboutSection: "04 / ПРО KADEX",
+    aboutSection: "04 / ПРО KADEX ТА ЗВ'ЯЗОК",
     aboutTitle: "ОДИН БРЕНД. КІЛЬКА РІШЕНЬ.",
     aboutDesc: "KADEX — це технологічний бренд, орієнтований на практичні бізнес-рішення. Від перевірених B2B-даних до внутрішньої автоматизації та комунікації з клієнтами: мета проста — перетворити повторювані процеси на системи.",
     dataLabel: "ДАНІ",
     dataSub: "ПЕРЕВІРЕНІ B2B ПРОДУКТИ",
     automationLabel: "АВТОМАТИЗАЦІЯ",
     automationSub: "БІЗНЕС-ПРОГРАМИ",
+    connectTitle: "ЗВ'ЯЗОК І ЗАСНОВНИК",
+    connectDesc: "Стежте за проєктами та професійними мережами.",
     ctaHeader: "KADEX / ПОЧАТИ РОБОТУ",
     ctaTitle: "БУДУЙ РОЗУМНІШЕ.",
     navProducts: "ПРОДУКТИ",
@@ -137,13 +141,15 @@ const translations: Record<string, any> = {
     whatWeBuildDesc: "KADEX riunisce prodotti di dati e soluzioni di automazione aziendale sotto un unico marchio tecnologico.",
     productsSection: "02 / PRODOTTI",
     solutionsSection: "03 / SOLUZIONI DI AUTOMAZIONE",
-    aboutSection: "04 / KADEX",
+    aboutSection: "04 / KADEX & SOCIAL",
     aboutTitle: "UN MARCHIO. SOLUZIONI MULTIPLE.",
     aboutDesc: "KADEX è un marchio tecnologico focalizzato su soluzioni aziendali pratiche.",
     dataLabel: "DATI",
     dataSub: "PRODOTTI B2B VERIFICATI",
     automationLabel: "AUTOMAZIONE",
     automationSub: "SOFTWARE AZIENDALE",
+    connectTitle: "CANALI E SOCIAL",
+    connectDesc: "Segui il fondatore e i progetti.",
     ctaHeader: "KADEX / INIZIA",
     ctaTitle: "CREA CON INTELLIGENZA.",
     navProducts: "PRODOTTI",
@@ -199,13 +205,15 @@ const translations: Record<string, any> = {
     whatWeBuildDesc: "KADEX łączy produkty danych i automatyzację pod jedną marką.",
     productsSection: "02 / PRODUKTY",
     solutionsSection: "03 / ROZWIĄZANIA",
-    aboutSection: "04 / KADEX",
+    aboutSection: "04 / KADEX I MEDIA",
     aboutTitle: "JEDNA MARKA. WIELE ROZWIĄZAŃ.",
     aboutDesc: "KADEX to marka skupiona na praktycznych rozwiązaniach.",
     dataLabel: "DANE",
     dataSub: "ZWERYFIKOWANE PRODUKTY",
     automationLabel: "AUTOMATYZACJA",
     automationSub: "OPROGRAMOWANIE",
+    connectTitle: "KONTAKT I SOCIAL MEDIA",
+    connectDesc: "Połącz się z twórcą i śledź projekty.",
     ctaHeader: "KADEX / ROZPOCZNIJ",
     ctaTitle: "BUDUJ MĄDRZIEj.",
     navProducts: "PRODUKTY",
@@ -254,7 +262,6 @@ const translations: Record<string, any> = {
   },
 };
 
-// Допоміжна функція для отримання перекладу
 function getT(lang: string) {
   return translations[lang] || translations["en"];
 }
@@ -275,7 +282,7 @@ const languagesList = [
   { code: "sv", label: "Svenska" },
   { code: "ja", label: "日本語" },
   { code: "zh", label: "中文" },
-  { code: "ru", label: "Русский" }, // Тригер блокування
+  { code: "ru", label: "Русский" },
 ];
 
 export default function Home() {
@@ -357,7 +364,6 @@ export default function Home() {
               <a href="#contact" className="border border-white/20 px-5 py-3 text-[11px] tracking-[0.14em] transition hover:border-white/50">{t.navContact}</a>
             </nav>
 
-            {/* Універсальний перемикач: поточна мова / EN (або рідна мова якщо зараз EN) */}
             <div className="flex items-center gap-1 border border-white/25 px-3 py-2 text-[11px] tracking-[0.12em] bg-white/[0.02]">
               <span className="uppercase text-[#d7c6a5] font-medium">{currentLang}</span>
               <span className="text-white/30">/</span>
@@ -520,7 +526,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ================= ABOUT ================= */}
+      {/* ================= ABOUT & SOCIALS ================= */}
       <section id="about">
         <div className="mx-auto grid max-w-[1400px] gap-16 px-6 py-24 lg:grid-cols-2 lg:px-10 lg:py-32">
           <div>
@@ -529,18 +535,61 @@ export default function Home() {
               {t.aboutTitle}
             </h2>
           </div>
-          <div className="flex flex-col justify-end">
-            <p className="text-lg leading-8 text-white/60">{t.aboutDesc}</p>
-            <div className="mt-12 grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
-              <div>
-                <div className="text-3xl font-medium">{t.dataLabel}</div>
-                <div className="mt-2 text-[10px] tracking-[0.15em] text-white/35">{t.dataSub}</div>
-              </div>
-              <div>
-                <div className="text-3xl font-medium">{t.automationLabel}</div>
-                <div className="mt-2 text-[10px] tracking-[0.15em] text-white/35">{t.automationSub}</div>
+          <div className="flex flex-col justify-between">
+            <div>
+              <p className="text-lg leading-8 text-white/60">{t.aboutDesc}</p>
+              <div className="mt-12 grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
+                <div>
+                  <div className="text-3xl font-medium">{t.dataLabel}</div>
+                  <div className="mt-2 text-[10px] tracking-[0.15em] text-white/35">{t.dataSub}</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-medium">{t.automationLabel}</div>
+                  <div className="mt-2 text-[10px] tracking-[0.15em] text-white/35">{t.automationSub}</div>
+                </div>
               </div>
             </div>
+
+            {/* Блок соціальних мереж та ніків */}
+            <div className="mt-16 border-t border-white/10 pt-8">
+              <div className="text-[10px] tracking-[0.2em] text-[#d7c6a5] mb-4">{t.connectTitle}</div>
+              <div className="flex flex-wrap gap-4">
+                
+                {/* LinkedIn */}
+                <a
+                  href="https://www.linkedin.com/in/andrii-kolotylo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 border border-white/15 bg-white/[0.02] px-4 py-3 transition hover:border-[#d7c6a5] hover:bg-white/[0.05]"
+                >
+                  <svg className="w-4 h-4 fill-[#d7c6a5]" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                  <div className="flex flex-col">
+                    <span className="text-[11px] font-medium tracking-[0.1em] text-white">LinkedIn</span>
+                    <span className="text-[9px] text-white/40">Andrii Kolotylo</span>
+                  </div>
+                </a>
+
+                {/* Twitter / X */}
+                <a
+                  href="https://twitter.com/KadexVIP"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 border border-white/15 bg-white/[0.02] px-4 py-3 transition hover:border-[#d7c6a5] hover:bg-white/[0.05]"
+                >
+                  <svg className="w-4 h-4 fill-[#d7c6a5]" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                  <div className="flex flex-col">
+                    <span className="text-[11px] font-medium tracking-[0.1em] text-white">Twitter / X</span>
+                    <span className="text-[9px] text-white/40">@KadexVIP</span>
+                  </div>
+                </a>
+
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
