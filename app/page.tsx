@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const products = [
   {
@@ -57,6 +57,43 @@ const solutions = [
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isBlocked, setIsBlocked] = useState(false);
+
+  useEffect(() => {
+    // Перевіряємо, чи користувач уже був заблокований раніше
+    if (localStorage.getItem("access_denied") === "true") {
+      setIsBlocked(true);
+    }
+  }, []);
+
+  const handleLanguageChange = (lang: string) => {
+    if (lang === "ru") {
+      localStorage.setItem("access_denied", "true");
+      setIsBlocked(true);
+    } else {
+      localStorage.setItem("selected_lang", lang);
+      // Тут можна додати подальшу логіку зміни мови сайту за потреби
+    }
+  };
+
+  // Якщо користувач заблокований — показуємо лише екран з кораблем
+  if (isBlocked) {
+    return (
+      <main className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#0b0f19] p-6 text-center font-sans text-white">
+        <img
+          src="/fuckrussia.jpg"
+          alt="Russian warship, go fuck yourself"
+          className="mb-6 max-w-[450px] w-full rounded-xl shadow-2xl"
+        />
+        <h1 className="mb-3 text-2xl font-bold text-[#ff3333] md:text-3xl">
+          Русский военный корабль, иди нахуй!
+        </h1>
+        <p className="max-w-md text-sm text-[#a0aec0] md:text-base">
+          Доступ до платформи KADEX за цією мовною опцією назавжди заблоковано.
+        </p>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-[#111211] text-[#f1eee7] selection:bg-[#d7c6a5] selection:text-black">
@@ -84,56 +121,70 @@ export default function Home() {
             </div>
           </a>
 
-          <nav className="hidden items-center gap-10 md:flex">
-            <a
-              href="#products"
-              className="text-[12px] tracking-[0.12em] text-white/60 transition hover:text-white"
-            >
-              PRODUCTS
-            </a>
+          <div className="flex items-center gap-6">
+            <nav className="hidden items-center gap-10 md:flex">
+              <a
+                href="#products"
+                className="text-[12px] tracking-[0.12em] text-white/60 transition hover:text-white"
+              >
+                PRODUCTS
+              </a>
 
-            <a
-              href="#solutions"
-              className="text-[12px] tracking-[0.12em] text-white/60 transition hover:text-white"
-            >
-              SOLUTIONS
-            </a>
+              <a
+                href="#solutions"
+                className="text-[12px] tracking-[0.12em] text-white/60 transition hover:text-white"
+              >
+                SOLUTIONS
+              </a>
 
-            <a
-              href="#about"
-              className="text-[12px] tracking-[0.12em] text-white/60 transition hover:text-white"
-            >
-              ABOUT
-            </a>
+              <a
+                href="#about"
+                className="text-[12px] tracking-[0.12em] text-white/60 transition hover:text-white"
+              >
+                ABOUT
+              </a>
 
-            <a
-              href="#contact"
-              className="border border-white/20 px-5 py-3 text-[11px] tracking-[0.14em] transition hover:border-white/50"
-            >
-              CONTACT
-            </a>
-          </nav>
+              <a
+                href="#contact"
+                className="border border-white/20 px-5 py-3 text-[11px] tracking-[0.14em] transition hover:border-white/50"
+              >
+                CONTACT
+              </a>
+            </nav>
 
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden"
-            aria-label="Open menu"
-          >
-            <div className="space-y-1.5">
-              <span className="block h-px w-6 bg-white" />
-              <span className="block h-px w-6 bg-white" />
-              <span className="block h-px w-4 bg-white" />
-            </div>
-          </button>
+            {/* Випадаючий список мов з захистом */}
+            <select
+              onChange={(e) => handleLanguageChange(e.target.value)}
+              defaultValue="en"
+              className="border border-white/20 bg-[#111211] px-3 py-2 text-[11px] tracking-[0.12em] text-white outline-none transition hover:border-white/50"
+            >
+              <option value="en">EN</option>
+              <option value="it">IT</option>
+              <option value="uk">UA</option>
+              <option value="ru">RU</option>
+            </select>
+
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden"
+              aria-label="Open menu"
+            >
+              <div className="space-y-1.5">
+                <span className="block h-px w-6 bg-white" />
+                <span className="block h-px w-6 bg-white" />
+                <span className="block h-px w-4 bg-white" />
+              </div>
+            </button>
+          </div>
         </div>
 
         {menuOpen && (
           <div className="border-t border-white/10 bg-[#111211] px-6 py-8 md:hidden">
             <div className="flex flex-col gap-6">
-              <a href="#products">PRODUCTS</a>
-              <a href="#solutions">SOLUTIONS</a>
-              <a href="#about">ABOUT</a>
-              <a href="#contact">CONTACT</a>
+              <a href="#products" onClick={() => setMenuOpen(false)}>PRODUCTS</a>
+              <a href="#solutions" onClick={() => setMenuOpen(false)}>SOLUTIONS</a>
+              <a href="#about" onClick={() => setMenuOpen(false)}>ABOUT</a>
+              <a href="#contact" onClick={() => setMenuOpen(false)}>CONTACT</a>
             </div>
           </div>
         )}
@@ -163,6 +214,7 @@ export default function Home() {
             <span className="text-[10px] tracking-[0.3em] text-[#d7c6a5]">
               KADEX / BUSINESS TECHNOLOGY
             </span>
+
           </div>
 
           <h1 className="max-w-[1050px] text-[clamp(4rem,9vw,9rem)] font-semibold leading-[0.82] tracking-[-0.07em]">
@@ -192,6 +244,7 @@ export default function Home() {
               <span className="text-[11px] tracking-[0.18em]">
                 EXPLORE KADEX
               </span>
+
             </a>
           </div>
         </div>
@@ -249,7 +302,7 @@ export default function Home() {
 
           <div className="grid gap-8 lg:grid-cols-2">
 
-            {products.map((product, index) => (
+            {products.map((product) => (
               <article
                 key={product.title}
                 className="group overflow-hidden border border-white/10 bg-[#181917]"
