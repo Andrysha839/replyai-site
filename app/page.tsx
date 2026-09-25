@@ -254,7 +254,7 @@ const translations: Record<string, any> = {
   },
 };
 
-// Допоміжна функція для отримання перекладу (якщо мови немає — бере англійську)
+// Допоміжна функція для отримання перекладу
 function getT(lang: string) {
   return translations[lang] || translations["en"];
 }
@@ -357,15 +357,15 @@ export default function Home() {
               <a href="#contact" className="border border-white/20 px-5 py-3 text-[11px] tracking-[0.14em] transition hover:border-white/50">{t.navContact}</a>
             </nav>
 
-            {/* Швидкий перемикач в шапці */}
+            {/* Універсальний перемикач: поточна мова / EN (або рідна мова якщо зараз EN) */}
             <div className="flex items-center gap-1 border border-white/25 px-3 py-2 text-[11px] tracking-[0.12em] bg-white/[0.02]">
               <span className="uppercase text-[#d7c6a5] font-medium">{currentLang}</span>
               <span className="text-white/30">/</span>
               <button
-                onClick={() => handleLanguageChange(currentLang === 'uk' ? 'en' : 'uk')}
+                onClick={() => handleLanguageChange(currentLang === 'en' ? 'uk' : 'en')}
                 className="uppercase text-white/60 transition hover:text-white"
               >
-                {currentLang === 'uk' ? 'EN' : 'UA'}
+                {currentLang === 'en' ? 'UA' : 'EN'}
               </button>
             </div>
 
