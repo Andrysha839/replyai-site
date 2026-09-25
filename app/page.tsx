@@ -2,60 +2,263 @@
 
 import { useState, useEffect } from "react";
 
-const products = [
-  {
-    title: "Poland Logistics Database",
-    description:
-      "Verified B2B companies across transport, freight forwarding, warehousing and logistics services in Poland.",
-    meta: "250+ VERIFIED COMPANIES",
-    category: "B2B DATA",
-    image:
-      "https://images.unsplash.com/photo-1586528116493-da8b8f7f4d2d?auto=format&fit=crop&w=1400&q=85",
-    href: "#",
-  },
-  {
-    title: "B2B Company Databases",
-    description:
-      "Industry-specific business databases built for sales teams, agencies and companies targeting new markets.",
-    meta: "VERIFIED BUSINESS DATA",
-    category: "DATA PRODUCTS",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85",
-    href: "#",
-  },
-];
-
-const solutions = [
-  {
-    number: "01",
-    name: "ReplyAI",
-    label: "CUSTOMER COMMUNICATION",
-    description:
-      "AI-powered customer communication for small businesses. ReplyAI connects to a business Instagram account and automatically responds to customers when the owner is busy or unavailable.",
-    points: [
-      "Instagram integration",
-      "Automatic customer replies",
-      "AI-powered conversations",
-      "Designed for small businesses",
+// Словник перекладів для різних мов
+const translations: Record<string, any> = {
+  en: {
+    productsTitle: "B2B DATA",
+    productsDesc: "Verified business databases created for companies that need reliable information for sales, prospecting and market expansion.",
+    solutionsTitle: "BUILT FOR REAL BUSINESS.",
+    whatWeBuild: "01 / WHAT WE BUILD",
+    whatWeBuildTitle: "Technology should make business simpler, not more complicated.",
+    whatWeBuildDesc: "KADEX brings together data products and business automation solutions under one technology brand. We create tools that remove repetitive work, organize information and help businesses operate more efficiently.",
+    productsSection: "02 / PRODUCTS",
+    solutionsSection: "03 / AUTOMATION SOLUTIONS",
+    aboutSection: "04 / KADEX",
+    aboutTitle: "ONE BRAND. MULTIPLE SOLUTIONS.",
+    aboutDesc: "KADEX is a technology brand focused on practical business solutions. From verified B2B data to internal business automation and customer communication, the goal is simple: turn repetitive processes into systems.",
+    dataLabel: "DATA",
+    dataSub: "VERIFIED B2B PRODUCTS",
+    automationLabel: "AUTOMATION",
+    automationSub: "BUSINESS SOFTWARE",
+    ctaHeader: "KADEX / GET STARTED",
+    ctaTitle: "BUILD SMARTER.",
+    navProducts: "PRODUCTS",
+    navSolutions: "SOLUTIONS",
+    navAbout: "ABOUT",
+    navContact: "CONTACT",
+    viewDatabase: "VIEW DATABASE",
+    selectLang: "SELECT LANGUAGE",
+    heroSub: "KADEX / BUSINESS TECHNOLOGY",
+    heroDesc: "KADEX builds practical technology for modern businesses — verified B2B data products and automation solutions that simplify everyday work.",
+    exploreBtn: "EXPLORE KADEX",
+    productsList: [
+      {
+        title: "Poland Logistics Database",
+        description: "Verified B2B companies across transport, freight forwarding, warehousing and logistics services in Poland.",
+        meta: "250+ VERIFIED COMPANIES",
+        category: "B2B DATA",
+        image: "https://images.unsplash.com/photo-1586528116493-da8b8f7f4d2d?auto=format&fit=crop&w=1400&q=85",
+        href: "#",
+      },
+      {
+        title: "B2B Company Databases",
+        description: "Industry-specific business databases built for sales teams, agencies and companies targeting new markets.",
+        meta: "VERIFIED BUSINESS DATA",
+        category: "DATA PRODUCTS",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85",
+        href: "#",
+      },
+    ],
+    solutionsList: [
+      {
+        number: "01",
+        name: "ReplyAI",
+        label: "CUSTOMER COMMUNICATION",
+        description: "AI-powered customer communication for small businesses. ReplyAI connects to a business Instagram account and automatically responds to customers when the owner is busy or unavailable.",
+        points: ["Instagram integration", "Automatic customer replies", "AI-powered conversations", "Designed for small businesses"],
+      },
+      {
+        number: "02",
+        name: "TurniFlow",
+        label: "WORKFORCE AUTOMATION",
+        description: "An internal business automation system for companies with employees. Managers create schedules while employees manage shifts, days off, availability and work information.",
+        points: ["Monthly employee schedules", "Shift exchange requests", "Days-off management", "Worked hours & earnings", "Employee contact information"],
+      },
     ],
   },
-  {
-    number: "02",
-    name: "TurniFlow",
-    label: "WORKFORCE AUTOMATION",
-    description:
-      "An internal business automation system for companies with employees. Managers create schedules while employees manage shifts, days off, availability and work information.",
-    points: [
-      "Monthly employee schedules",
-      "Shift exchange requests",
-      "Days-off management",
-      "Worked hours & earnings",
-      "Employee contact information",
+  uk: {
+    productsTitle: "B2B ДАНІ",
+    productsDesc: "Перевірені бізнес-бази даних, створені для компаній, яким потрібна надійна інформація для продажу, пошуку клієнтів та виходу на нові ринки.",
+    solutionsTitle: "СТВОРЕНО ДЛЯ РЕАЛЬНОГО БІЗНЕСУ.",
+    whatWeBuild: "01 / ЩО МИ СТВОРЮЄМО",
+    whatWeBuildTitle: "Технології мають спрощувати бізнес, а не ускладнювати його.",
+    whatWeBuildDesc: "KADEX об'єднує продукти даних та рішення для автоматизації бізнесу під єдиним технологічним брендом. Ми створюємо інструменти, які усувають рутинну роботу, впорядковують інформацію та допомагають компаніям працювати ефективніше.",
+    productsSection: "02 / ПРОДУКТИ",
+    solutionsSection: "03 / РІШЕННЯ АВТОМАТИЗАЦІЇ",
+    aboutSection: "04 / ПРО KADEX",
+    aboutTitle: "ОДИН БРЕНД. КІЛЬКА РІШЕНЬ.",
+    aboutDesc: "KADEX — це технологічний бренд, орієнтований на практичні бізнес-рішення. Від перевірених B2B-даних до внутрішньої автоматизації та комунікації з клієнтами: мета проста — перетворити повторювані процеси на системи.",
+    dataLabel: "ДАНІ",
+    dataSub: "ПЕРЕВІРЕНІ B2B ПРОДУКТИ",
+    automationLabel: "АВТОМАТИЗАЦІЯ",
+    automationSub: "БІЗНЕС-ПРОГРАМИ",
+    ctaHeader: "KADEX / ПОЧАТИ РОБОТУ",
+    ctaTitle: "БУДУЙ РОЗУМНІШЕ.",
+    navProducts: "ПРОДУКТИ",
+    navSolutions: "РІШЕННЯ",
+    navAbout: "ПРО НАС",
+    navContact: "КОНТАКТИ",
+    viewDatabase: "ПЕРЕГЛЯНУТИ БАЗУ",
+    selectLang: "ОБРАТИ МОВУ",
+    heroSub: "KADEX / БІЗНЕС-ТЕХНОЛОГІЇ",
+    heroDesc: "KADEX створює практичні технології для сучасного бізнесу — перевірені B2B бази даних та рішення для автоматизації, що спрощують щоденну роботу.",
+    exploreBtn: "ДОСЛІДИТИ KADEX",
+    productsList: [
+      {
+        title: "Логістична база Польщі",
+        description: "Перевірені B2B компанії у сфері транспорту, експедирування, складського господарства та логістичних послуг у Польщі.",
+        meta: "250+ ПЕРЕВІРЕНИХ КОМПАНІЙ",
+        category: "B2B ДАНІ",
+        image: "https://images.unsplash.com/photo-1586528116493-da8b8f7f4d2d?auto=format&fit=crop&w=1400&q=85",
+        href: "#",
+      },
+      {
+        title: "Бази B2B Компаній",
+        description: "Галузеві бізнес-бази даних, створені для відділів продажів, агентств та компаній, що виходять на нові ринки.",
+        meta: "ПЕРЕВІРЕНІ БІЗНЕС-ДАНІ",
+        category: "ПРОДУКТИ ДАНИХ",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85",
+        href: "#",
+      },
+    ],
+    solutionsList: [
+      {
+        number: "01",
+        name: "ReplyAI",
+        label: "КОМУНІКАЦІЯ З КЛІЄНТАМИ",
+        description: "Штучний інтелект для спілкування з клієнтами малого бізнесу. ReplyAI підключається до акаунта Instagram і автоматично відповідає покупцям, коли власник зайнятий або відсутній.",
+        points: ["Інтеграція з Instagram", "Автоматичні відповіді клієнтам", "Розмови на базі штучного інтелекту", "Створено для малого бізнесу"],
+      },
+      {
+        number: "02",
+        name: "TurniFlow",
+        label: "АВТОМАТИЗАЦІЯ ПЕРСОНАЛУ",
+        description: "Система внутрішньої автоматизації для компаній із працівниками. Менеджери створюють графіки, а співробітники керують змінами, вихідними, доступністю та робочою інформацією.",
+        points: ["Місячні графіки працівників", "Запити на обмін змінами", "Управління вихідними", "Відпрацьовані години та заробіток", "Контактні дані співробітників"],
+      },
     ],
   },
-];
+  it: {
+    productsTitle: "DATI B2B",
+    productsDesc: "Database aziendali verificati creati per le aziende che necessitano di informazioni affidabili per vendite, prospezione ed espansione.",
+    solutionsTitle: "CREATO PER IL BUSINESS REALE.",
+    whatWeBuild: "01 / COSA COSTRUIAMO",
+    whatWeBuildTitle: "La tecnologia dovrebbe semplificare il business, non complicarlo.",
+    whatWeBuildDesc: "KADEX riunisce prodotti di dati e soluzioni di automazione aziendale sotto un unico marchio tecnologico.",
+    productsSection: "02 / PRODOTTI",
+    solutionsSection: "03 / SOLUZIONI DI AUTOMAZIONE",
+    aboutSection: "04 / KADEX",
+    aboutTitle: "UN MARCHIO. SOLUZIONI MULTIPLE.",
+    aboutDesc: "KADEX è un marchio tecnologico focalizzato su soluzioni aziendali pratiche.",
+    dataLabel: "DATI",
+    dataSub: "PRODOTTI B2B VERIFICATI",
+    automationLabel: "AUTOMAZIONE",
+    automationSub: "SOFTWARE AZIENDALE",
+    ctaHeader: "KADEX / INIZIA",
+    ctaTitle: "CREA CON INTELLIGENZA.",
+    navProducts: "PRODOTTI",
+    navSolutions: "SOLUZIONI",
+    navAbout: "CHI SIAMO",
+    navContact: "CONTATTI",
+    viewDatabase: "VEDI DATABASE",
+    selectLang: "SELEZIONA LINGUA",
+    heroSub: "KADEX / TECNOLOGIA AZIENDALE",
+    heroDesc: "KADEX crea tecnologia pratica per le aziende moderne — database B2B verificati e soluzioni di automazione.",
+    exploreBtn: "ESPLORA KADEX",
+    productsList: [
+      {
+        title: "Database Logistica Polonia",
+        description: "Aziende B2B verificate nei settori di trasporto, spedizioni e logistica in Polonia.",
+        meta: "250+ AZIENDE VERIFICATE",
+        category: "DATI B2B",
+        image: "https://images.unsplash.com/photo-1586528116493-da8b8f7f4d2d?auto=format&fit=crop&w=1400&q=85",
+        href: "#",
+      },
+      {
+        title: "Database Aziendali B2B",
+        description: "Database aziendali specifici per team di vendita e agenzie.",
+        meta: "DATI AZIENDALI VERIFICATI",
+        category: "PRODOTTI DATI",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85",
+        href: "#",
+      },
+    ],
+    solutionsList: [
+      {
+        number: "01",
+        name: "ReplyAI",
+        label: "COMUNICAZIONE CLIENTI",
+        description: "Comunicazione potenziata dall'IA per piccole imprese. Si connette a Instagram e risponde automaticamente.",
+        points: ["Integrazione Instagram", "Risposte automatiche", "Conversazioni IA", "Per piccole imprese"],
+      },
+      {
+        number: "02",
+        name: "TurniFlow",
+        label: "AUTOMAZIONE PERSONALE",
+        description: "Sistema di automazione interna per la gestione di turni, ferie e orari dei dipendenti.",
+        points: ["Pianificazione turni", "Scambio turni", "Gestione ferie", "Ore lavorate", "Contatti dipendenti"],
+      },
+    ],
+  },
+  pl: {
+    productsTitle: "DANE B2B",
+    productsDesc: "Zweryfikowane bazy danych dla firm poszukujących rzetelnych informacji do sprzedaży.",
+    solutionsTitle: "STWORZONE DLA BIZNESU.",
+    whatWeBuild: "01 / CO TWORZYMY",
+    whatWeBuildTitle: "Technologia powinna upraszczać biznes, a nie go komplikować.",
+    whatWeBuildDesc: "KADEX łączy produkty danych i automatyzację pod jedną marką.",
+    productsSection: "02 / PRODUKTY",
+    solutionsSection: "03 / ROZWIĄZANIA",
+    aboutSection: "04 / KADEX",
+    aboutTitle: "JEDNA MARKA. WIELE ROZWIĄZAŃ.",
+    aboutDesc: "KADEX to marka skupiona na praktycznych rozwiązaniach.",
+    dataLabel: "DANE",
+    dataSub: "ZWERYFIKOWANE PRODUKTY",
+    automationLabel: "AUTOMATYZACJA",
+    automationSub: "OPROGRAMOWANIE",
+    ctaHeader: "KADEX / ROZPOCZNIJ",
+    ctaTitle: "BUDUJ MĄDRZIEj.",
+    navProducts: "PRODUKTY",
+    navSolutions: "ROZWIĄZANIA",
+    navAbout: "O NAS",
+    navContact: "KONTAKT",
+    viewDatabase: "ZOBACZ BAZĘ",
+    selectLang: "WYBIERZ JĘZYK",
+    heroSub: "KADEX / TECHNOLOGIA BIZNESOWA",
+    heroDesc: "KADEX tworzy praktyczne technologie dla nowoczesnych firm.",
+    exploreBtn: "ODKRYJ KADEX",
+    productsList: [
+      {
+        title: "Baza Logistyczna Polska",
+        description: "Zweryfikowane firmy B2B z branży transportowej i logistycznej w Polsce.",
+        meta: "250+ ZWERYFIKOWANYCH FIRM",
+        category: "DANE B2B",
+        image: "https://images.unsplash.com/photo-1586528116493-da8b8f7f4d2d?auto=format&fit=crop&w=1400&q=85",
+        href: "#",
+      },
+      {
+        title: "Bazy Firm B2B",
+        description: "Branżowe bazy danych dla zespołów sprzedaży.",
+        meta: "ZWERYFIKOWANE DANE",
+        category: "PRODUKTY DANYCH",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85",
+        href: "#",
+      },
+    ],
+    solutionsList: [
+      {
+        number: "01",
+        name: "ReplyAI",
+        label: "KOMUNIKACJA Z KLIENTEM",
+        description: "Automatyczna obsługa klientów na Instagramie za pomocą sztucznej inteligencji.",
+        points: ["Integracja z Instagram", "Automatyczne odpowiedzi", "Rozmowy AI", "Dla małych firm"],
+      },
+      {
+        number: "02",
+        name: "TurniFlow",
+        label: "AUTOMATYZACJA PRACY",
+        description: "System zarządzania grafikami, zmianami i czasem pracy pracowników.",
+        points: ["Grafiki miesięczne", "Wymiana zmian", "Zarządzanie urlopami", "Przepracowane godziny", "Kontakty"],
+      },
+    ],
+  },
+};
 
-// Список мов для футера
+// Допоміжна функція для отримання перекладу (якщо мови немає — бере англійську)
+function getT(lang: string) {
+  return translations[lang] || translations["en"];
+}
+
 const languagesList = [
   { code: "en", label: "English" },
   { code: "it", label: "Italiano" },
@@ -72,7 +275,7 @@ const languagesList = [
   { code: "sv", label: "Svenska" },
   { code: "ja", label: "日本語" },
   { code: "zh", label: "中文" },
-  { code: "ru", label: "Русский" }, // Блокування при виборі
+  { code: "ru", label: "Русский" }, // Тригер блокування
 ];
 
 export default function Home() {
@@ -81,13 +284,11 @@ export default function Home() {
   const [currentLang, setCurrentLang] = useState("en");
 
   useEffect(() => {
-    // 1. Перевірка блокування
     if (localStorage.getItem("access_denied") === "true") {
       setIsBlocked(true);
       return;
     }
 
-    // 2. Автовизначення мови користувача
     const savedLang = localStorage.getItem("selected_lang");
     if (savedLang) {
       setCurrentLang(savedLang);
@@ -112,7 +313,8 @@ export default function Home() {
     }
   };
 
-  // Якщо заблокований — показуємо екран з кораблем
+  const t = getT(currentLang);
+
   if (isBlocked) {
     return (
       <main className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#0b0f19] p-6 text-center font-sans text-white">
@@ -135,60 +337,27 @@ export default function Home() {
     <main className="min-h-screen bg-[#111211] text-[#f1eee7] selection:bg-[#d7c6a5] selection:text-black">
 
       {/* ================= HEADER ================= */}
-
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-[#111211]/90 backdrop-blur-xl">
         <div className="mx-auto flex h-[78px] max-w-[1400px] items-center justify-between px-6 lg:px-10">
-
           <a href="#" className="group flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center border border-white/20 bg-white/[0.03]">
-              <span className="text-lg font-bold tracking-[-0.08em]">
-                K
-              </span>
+              <span className="text-lg font-bold tracking-[-0.08em]">K</span>
             </div>
-
             <div>
-              <div className="text-[18px] font-semibold tracking-[0.16em]">
-                KADEX
-              </div>
-
-              <div className="text-[8px] tracking-[0.28em] text-white/40">
-                BUSINESS TECHNOLOGY
-              </div>
+              <div className="text-[18px] font-semibold tracking-[0.16em]">KADEX</div>
+              <div className="text-[8px] tracking-[0.28em] text-white/40">BUSINESS TECHNOLOGY</div>
             </div>
           </a>
 
           <div className="flex items-center gap-6">
             <nav className="hidden items-center gap-10 md:flex">
-              <a
-                href="#products"
-                className="text-[12px] tracking-[0.12em] text-white/60 transition hover:text-white"
-              >
-                PRODUCTS
-              </a>
-
-              <a
-                href="#solutions"
-                className="text-[12px] tracking-[0.12em] text-white/60 transition hover:text-white"
-              >
-                SOLUTIONS
-              </a>
-
-              <a
-                href="#about"
-                className="text-[12px] tracking-[0.12em] text-white/60 transition hover:text-white"
-              >
-                ABOUT
-              </a>
-
-              <a
-                href="#contact"
-                className="border border-white/20 px-5 py-3 text-[11px] tracking-[0.14em] transition hover:border-white/50"
-              >
-                CONTACT
-              </a>
+              <a href="#products" className="text-[12px] tracking-[0.12em] text-white/60 transition hover:text-white">{t.navProducts}</a>
+              <a href="#solutions" className="text-[12px] tracking-[0.12em] text-white/60 transition hover:text-white">{t.navSolutions}</a>
+              <a href="#about" className="text-[12px] tracking-[0.12em] text-white/60 transition hover:text-white">{t.navAbout}</a>
+              <a href="#contact" className="border border-white/20 px-5 py-3 text-[11px] tracking-[0.14em] transition hover:border-white/50">{t.navContact}</a>
             </nav>
 
-            {/* Швидкий перемикач мови в шапці */}
+            {/* Швидкий перемикач в шапці */}
             <div className="flex items-center gap-1 border border-white/25 px-3 py-2 text-[11px] tracking-[0.12em] bg-white/[0.02]">
               <span className="uppercase text-[#d7c6a5] font-medium">{currentLang}</span>
               <span className="text-white/30">/</span>
@@ -200,11 +369,7 @@ export default function Home() {
               </button>
             </div>
 
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden"
-              aria-label="Open menu"
-            >
+            <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden" aria-label="Open menu">
               <div className="space-y-1.5">
                 <span className="block h-px w-6 bg-white" />
                 <span className="block h-px w-6 bg-white" />
@@ -217,40 +382,31 @@ export default function Home() {
         {menuOpen && (
           <div className="border-t border-white/10 bg-[#111211] px-6 py-8 md:hidden">
             <div className="flex flex-col gap-6">
-              <a href="#products" onClick={() => setMenuOpen(false)}>PRODUCTS</a>
-              <a href="#solutions" onClick={() => setMenuOpen(false)}>SOLUTIONS</a>
-              <a href="#about" onClick={() => setMenuOpen(false)}>ABOUT</a>
-              <a href="#contact" onClick={() => setMenuOpen(false)}>CONTACT</a>
+              <a href="#products" onClick={() => setMenuOpen(false)}>{t.navProducts}</a>
+              <a href="#solutions" onClick={() => setMenuOpen(false)}>{t.navSolutions}</a>
+              <a href="#about" onClick={() => setMenuOpen(false)}>{t.navAbout}</a>
+              <a href="#contact" onClick={() => setMenuOpen(false)}>{t.navContact}</a>
             </div>
           </div>
         )}
       </header>
 
       {/* ================= HERO ================= */}
-
       <section className="relative flex min-h-screen items-end overflow-hidden">
-
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2200&q=90"
             alt="Modern business office"
             className="h-full w-full object-cover opacity-45"
           />
-
           <div className="absolute inset-0 bg-gradient-to-r from-[#111211] via-[#111211]/90 to-[#111211]/35" />
-
           <div className="absolute inset-0 bg-gradient-to-t from-[#111211] via-transparent to-[#111211]/60" />
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pb-24 pt-40 lg:px-10 lg:pb-32">
-
           <div className="mb-8 flex items-center gap-4">
             <div className="h-px w-12 bg-[#d7c6a5]" />
-
-            <span className="text-[10px] tracking-[0.3em] text-[#d7c6a5]">
-              KADEX / BUSINESS TECHNOLOGY
-            </span>
-
+            <span className="text-[10px] tracking-[0.3em] text-[#d7c6a5]">{t.heroSub}</span>
           </div>
 
           <h1 className="max-w-[1050px] text-[clamp(4rem,9vw,9rem)] font-semibold leading-[0.82] tracking-[-0.07em]">
@@ -262,303 +418,157 @@ export default function Home() {
           </h1>
 
           <div className="mt-12 flex max-w-[650px] flex-col gap-8 md:flex-row md:items-end">
-
-            <p className="text-[15px] leading-7 text-white/55">
-              KADEX builds practical technology for modern businesses —
-              verified B2B data products and automation solutions that
-              simplify everyday work.
-            </p>
-
-            <a
-              href="#products"
-              className="group flex shrink-0 items-center gap-5"
-            >
-              <span className="flex h-14 w-14 items-center justify-center border border-white/25 transition group-hover:bg-[#d7c6a5] group-hover:text-black">
-                →
-              </span>
-
-              <span className="text-[11px] tracking-[0.18em]">
-                EXPLORE KADEX
-              </span>
-
+            <p className="text-[15px] leading-7 text-white/55">{t.heroDesc}</p>
+            <a href="#products" className="group flex shrink-0 items-center gap-5">
+              <span className="flex h-14 w-14 items-center justify-center border border-white/25 transition group-hover:bg-[#d7c6a5] group-hover:text-black">→</span>
+              <span className="text-[11px] tracking-[0.18em]">{t.exploreBtn}</span>
             </a>
           </div>
         </div>
       </section>
 
       {/* ================= INTRO ================= */}
-
       <section className="border-y border-white/10 bg-[#151614]">
         <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-24 lg:grid-cols-[1fr_2fr] lg:px-10 lg:py-32">
-
           <div>
-            <span className="text-[10px] tracking-[0.3em] text-[#d7c6a5]">
-              01 / WHAT WE BUILD
-            </span>
+            <span className="text-[10px] tracking-[0.3em] text-[#d7c6a5]">{t.whatWeBuild}</span>
           </div>
-
           <div>
             <h2 className="max-w-[900px] text-3xl font-medium leading-tight tracking-[-0.04em] md:text-5xl">
-              Technology should make business simpler, not more complicated.
+              {t.whatWeBuildTitle}
             </h2>
-
             <p className="mt-8 max-w-[720px] text-base leading-8 text-white/50">
-              KADEX brings together data products and business automation
-              solutions under one technology brand. We create tools that
-              remove repetitive work, organize information and help businesses
-              operate more efficiently.
+              {t.whatWeBuildDesc}
             </p>
           </div>
         </div>
       </section>
 
       {/* ================= PRODUCTS ================= */}
-
       <section id="products" className="bg-[#111211]">
         <div className="mx-auto max-w-[1400px] px-6 py-24 lg:px-10 lg:py-32">
-
           <div className="mb-16 flex flex-col justify-between gap-8 md:flex-row md:items-end">
-
             <div>
-              <span className="text-[10px] tracking-[0.3em] text-[#d7c6a5]">
-                02 / PRODUCTS
-              </span>
-
-              <h2 className="mt-5 text-5xl font-medium tracking-[-0.05em] md:text-7xl">
-                B2B DATA
-              </h2>
+              <span className="text-[10px] tracking-[0.3em] text-[#d7c6a5]">{t.productsSection}</span>
+              <h2 className="mt-5 text-5xl font-medium tracking-[-0.05em] md:text-7xl">{t.productsTitle}</h2>
             </div>
-
-            <p className="max-w-[400px] text-sm leading-7 text-white/45">
-              Verified business databases created for companies that need
-              reliable information for sales, prospecting and market
-              expansion.
-            </p>
+            <p className="max-w-[400px] text-sm leading-7 text-white/45">{t.productsDesc}</p>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-2">
-
-            {products.map((product) => (
-              <article
-                key={product.title}
-                className="group overflow-hidden border border-white/10 bg-[#181917]"
-              >
-
+            {t.productsList.map((product: any) => (
+              <article key={product.title} className="group overflow-hidden border border-white/10 bg-[#181917]">
                 <div className="relative aspect-[16/10] overflow-hidden">
-
                   <img
                     src={product.image}
                     alt={product.title}
                     className="h-full w-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
                   />
-
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
                   <div className="absolute left-6 top-6 border border-white/20 bg-black/40 px-3 py-2 backdrop-blur">
-                    <span className="text-[9px] tracking-[0.2em]">
-                      {product.category}
-                    </span>
+                    <span className="text-[9px] tracking-[0.2em]">{product.category}</span>
                   </div>
-
                   <div className="absolute bottom-6 left-6 right-6">
-                    <span className="text-[9px] tracking-[0.2em] text-[#d7c6a5]">
-                      {product.meta}
-                    </span>
-
-                    <h3 className="mt-3 max-w-[600px] text-3xl font-medium tracking-[-0.04em] md:text-4xl">
-                      {product.title}
-                    </h3>
+                    <span className="text-[9px] tracking-[0.2em] text-[#d7c6a5]">{product.meta}</span>
+                    <h3 className="mt-3 max-w-[600px] text-3xl font-medium tracking-[-0.04em] md:text-4xl">{product.title}</h3>
                   </div>
                 </div>
-
                 <div className="p-6 md:p-8">
-
-                  <p className="max-w-[600px] text-sm leading-7 text-white/50">
-                    {product.description}
-                  </p>
-
-                  <a
-                    href={product.href}
-                    className="mt-8 inline-flex items-center gap-4 border-b border-white/20 pb-2 text-[10px] tracking-[0.18em] transition hover:border-[#d7c6a5] hover:text-[#d7c6a5]"
-                  >
-                    VIEW DATABASE
-                    <span>↗</span>
+                  <p className="max-w-[600px] text-sm leading-7 text-white/50">{product.description}</p>
+                  <a href={product.href} className="mt-8 inline-flex items-center gap-4 border-b border-white/20 pb-2 text-[10px] tracking-[0.18em] transition hover:border-[#d7c6a5] hover:text-[#d7c6a5]">
+                    {t.viewDatabase} <span>↗</span>
                   </a>
                 </div>
               </article>
             ))}
-
           </div>
         </div>
       </section>
 
       {/* ================= SOLUTIONS ================= */}
-
       <section id="solutions" className="border-y border-white/10 bg-[#181917]">
-
         <div className="mx-auto max-w-[1400px] px-6 py-24 lg:px-10 lg:py-32">
-
           <div className="mb-20">
-            <span className="text-[10px] tracking-[0.3em] text-[#d7c6a5]">
-              03 / AUTOMATION SOLUTIONS
-            </span>
-
+            <span className="text-[10px] tracking-[0.3em] text-[#d7c6a5]">{t.solutionsSection}</span>
             <h2 className="mt-5 max-w-[900px] text-5xl font-medium tracking-[-0.05em] md:text-7xl">
-              BUILT FOR
-              <br />
-              <span className="text-white/35">REAL BUSINESS.</span>
+              {t.solutionsTitle}
             </h2>
           </div>
 
           <div className="divide-y divide-white/10 border-y border-white/10">
-
-            {solutions.map((solution) => (
-              <article
-                key={solution.name}
-                className="grid gap-10 py-12 md:grid-cols-[100px_1fr_1.2fr] md:py-16"
-              >
-
-                <div className="text-sm text-white/30">
-                  {solution.number}
-                </div>
-
+            {t.solutionsList.map((solution: any) => (
+              <article key={solution.name} className="grid gap-10 py-12 md:grid-cols-[100px_1fr_1.2fr] md:py-16">
+                <div className="text-sm text-white/30">{solution.number}</div>
                 <div>
-                  <span className="text-[9px] tracking-[0.2em] text-[#d7c6a5]">
-                    {solution.label}
-                  </span>
-
-                  <h3 className="mt-4 text-4xl font-medium tracking-[-0.05em] md:text-5xl">
-                    {solution.name}
-                  </h3>
+                  <span className="text-[9px] tracking-[0.2em] text-[#d7c6a5]">{solution.label}</span>
+                  <h3 className="mt-4 text-4xl font-medium tracking-[-0.05em] md:text-5xl">{solution.name}</h3>
                 </div>
-
                 <div>
-
-                  <p className="max-w-[650px] text-sm leading-7 text-white/55">
-                    {solution.description}
-                  </p>
-
+                  <p className="max-w-[650px] text-sm leading-7 text-white/55">{solution.description}</p>
                   <div className="mt-8 grid gap-3 sm:grid-cols-2">
-
-                    {solution.points.map((point) => (
-                      <div
-                        key={point}
-                        className="flex items-center gap-3 text-xs text-white/55"
-                      >
+                    {solution.points.map((point: string) => (
+                      <div key={point} className="flex items-center gap-3 text-xs text-white/55">
                         <span className="h-1 w-1 bg-[#d7c6a5]" />
                         {point}
                       </div>
                     ))}
-
                   </div>
-
                 </div>
               </article>
             ))}
-
           </div>
         </div>
       </section>
 
       {/* ================= ABOUT ================= */}
-
       <section id="about">
         <div className="mx-auto grid max-w-[1400px] gap-16 px-6 py-24 lg:grid-cols-2 lg:px-10 lg:py-32">
-
           <div>
-            <span className="text-[10px] tracking-[0.3em] text-[#d7c6a5]">
-              04 / KADEX
-            </span>
-
+            <span className="text-[10px] tracking-[0.3em] text-[#d7c6a5]">{t.aboutSection}</span>
             <h2 className="mt-6 text-5xl font-medium tracking-[-0.05em] md:text-7xl">
-              ONE BRAND.
-              <br />
-              <span className="text-white/35">
-                MULTIPLE SOLUTIONS.
-              </span>
+              {t.aboutTitle}
             </h2>
           </div>
-
           <div className="flex flex-col justify-end">
-
-            <p className="text-lg leading-8 text-white/60">
-              KADEX is a technology brand focused on practical business
-              solutions. From verified B2B data to internal business
-              automation and customer communication, the goal is simple:
-              turn repetitive processes into systems.
-            </p>
-
+            <p className="text-lg leading-8 text-white/60">{t.aboutDesc}</p>
             <div className="mt-12 grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
-
               <div>
-                <div className="text-3xl font-medium">DATA</div>
-                <div className="mt-2 text-[10px] tracking-[0.15em] text-white/35">
-                  VERIFIED B2B PRODUCTS
-                </div>
+                <div className="text-3xl font-medium">{t.dataLabel}</div>
+                <div className="mt-2 text-[10px] tracking-[0.15em] text-white/35">{t.dataSub}</div>
               </div>
-
               <div>
-                <div className="text-3xl font-medium">AUTOMATION</div>
-                <div className="mt-2 text-[10px] tracking-[0.15em] text-white/35">
-                  BUSINESS SOFTWARE
-                </div>
+                <div className="text-3xl font-medium">{t.automationLabel}</div>
+                <div className="mt-2 text-[10px] tracking-[0.15em] text-white/35">{t.automationSub}</div>
               </div>
-
             </div>
           </div>
         </div>
       </section>
 
       {/* ================= CTA ================= */}
-
-      <section
-        id="contact"
-        className="relative overflow-hidden border-t border-white/10 bg-[#d7c6a5] text-[#111211]"
-      >
-
+      <section id="contact" className="relative overflow-hidden border-t border-white/10 bg-[#d7c6a5] text-[#111211]">
         <div className="mx-auto max-w-[1400px] px-6 py-24 lg:px-10 lg:py-32">
-
           <div className="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
-
             <div>
-              <span className="text-[10px] tracking-[0.3em] opacity-60">
-                KADEX / GET STARTED
-              </span>
-
-              <h2 className="mt-6 max-w-[900px] text-5xl font-medium tracking-[-0.06em] md:text-8xl">
-                BUILD SMARTER.
-              </h2>
+              <span className="text-[10px] tracking-[0.3em] opacity-60">{t.ctaHeader}</span>
+              <h2 className="mt-6 max-w-[900px] text-5xl font-medium tracking-[-0.06em] md:text-8xl">{t.ctaTitle}</h2>
             </div>
-
-            <a
-              href="mailto:hello@kadex.vip"
-              className="flex h-20 w-20 shrink-0 items-center justify-center border border-[#111211]/30 text-2xl transition hover:bg-[#111211] hover:text-[#d7c6a5]"
-            >
-              →
-            </a>
-
+            <a href="mailto:hello@kadex.vip" className="flex h-20 w-20 shrink-0 items-center justify-center border border-[#111211]/30 text-2xl transition hover:bg-[#111211] hover:text-[#d7c6a5]">→</a>
           </div>
         </div>
       </section>
 
       {/* ================= FOOTER ================= */}
-
       <footer className="bg-[#111211]">
-
         <div className="mx-auto flex max-w-[1400px] flex-col justify-between gap-10 px-6 py-12 md:flex-row md:items-start lg:px-10">
-
           <div>
-            <div className="text-xl font-semibold tracking-[0.16em]">
-              KADEX
-            </div>
-            <div className="mt-2 text-[9px] tracking-[0.25em] text-white/30">
-              BUSINESS TECHNOLOGY
-            </div>
+            <div className="text-xl font-semibold tracking-[0.16em]">KADEX</div>
+            <div className="mt-2 text-[9px] tracking-[0.25em] text-white/30">BUSINESS TECHNOLOGY</div>
           </div>
 
           {/* Вибір мов у футері */}
           <div className="flex flex-col gap-3">
-            <span className="text-[10px] tracking-[0.2em] text-[#d7c6a5]">SELECT LANGUAGE</span>
+            <span className="text-[10px] tracking-[0.2em] text-[#d7c6a5]">{t.selectLang}</span>
             <div className="flex flex-wrap gap-2 max-w-[400px]">
               {languagesList.map((l) => (
                 <button
@@ -577,18 +587,16 @@ export default function Home() {
           </div>
 
           <div className="flex flex-wrap gap-8 text-[10px] tracking-[0.15em] text-white/40">
-            <a href="#products" className="hover:text-white">PRODUCTS</a>
-            <a href="#solutions" className="hover:text-white">SOLUTIONS</a>
-            <a href="#about" className="hover:text-white">ABOUT</a>
+            <a href="#products" className="hover:text-white">{t.navProducts}</a>
+            <a href="#solutions" className="hover:text-white">{t.navSolutions}</a>
+            <a href="#about" className="hover:text-white">{t.navAbout}</a>
             <a href="mailto:hello@kadex.vip" className="hover:text-white">HELLO@KADEX.VIP</a>
           </div>
 
           <div className="text-[9px] tracking-[0.15em] text-white/25">
             © {new Date().getFullYear()} KADEX
           </div>
-
         </div>
-
       </footer>
     </main>
   );
