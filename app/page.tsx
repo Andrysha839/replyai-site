@@ -55,14 +55,50 @@ const solutions = [
   },
 ];
 
+// Список мов для футера
+const languagesList = [
+  { code: "en", label: "English" },
+  { code: "it", label: "Italiano" },
+  { code: "uk", label: "Українська" },
+  { code: "es", label: "Español" },
+  { code: "de", label: "Deutsch" },
+  { code: "fr", label: "Français" },
+  { code: "pl", label: "Polski" },
+  { code: "pt", label: "Português" },
+  { code: "nl", label: "Nederlands" },
+  { code: "el", label: "Ελληνικά" },
+  { code: "ro", label: "Română" },
+  { code: "cs", label: "Čeština" },
+  { code: "sv", label: "Svenska" },
+  { code: "ja", label: "日本語" },
+  { code: "zh", label: "中文" },
+  { code: "ru", label: "Русский" }, // Блокування при виборі
+];
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isBlocked, setIsBlocked] = useState(false);
+  const [currentLang, setCurrentLang] = useState("en");
 
   useEffect(() => {
-    // Перевіряємо, чи користувач уже був заблокований раніше
+    // 1. Перевірка блокування
     if (localStorage.getItem("access_denied") === "true") {
       setIsBlocked(true);
+      return;
+    }
+
+    // 2. Автовизначення мови користувача
+    const savedLang = localStorage.getItem("selected_lang");
+    if (savedLang) {
+      setCurrentLang(savedLang);
+    } else {
+      const browserLang = navigator.language ? navigator.language.slice(0, 2).toLowerCase() : "en";
+      if (["uk", "it", "en", "es", "de", "fr", "pl", "pt", "nl"].includes(browserLang)) {
+        setCurrentLang(browserLang);
+        localStorage.setItem("selected_lang", browserLang);
+      } else {
+        setCurrentLang("en");
+      }
     }
   }, []);
 
@@ -71,12 +107,12 @@ export default function Home() {
       localStorage.setItem("access_denied", "true");
       setIsBlocked(true);
     } else {
+      setCurrentLang(lang);
       localStorage.setItem("selected_lang", lang);
-      // Тут можна додати подальшу логіку зміни мови сайту за потреби
     }
   };
 
-  // Якщо користувач заблокований — показуємо лише екран з кораблем
+  // Якщо заблокований — показуємо екран з кораблем
   if (isBlocked) {
     return (
       <main className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#0b0f19] p-6 text-center font-sans text-white">
@@ -152,17 +188,17 @@ export default function Home() {
               </a>
             </nav>
 
-            {/* Випадаючий список мов з захистом */}
-            <select
-              onChange={(e) => handleLanguageChange(e.target.value)}
-              defaultValue="en"
-              className="border border-white/20 bg-[#111211] px-3 py-2 text-[11px] tracking-[0.12em] text-white outline-none transition hover:border-white/50"
-            >
-              <option value="en">EN</option>
-              <option value="it">IT</option>
-              <option value="uk">UA</option>
-              <option value="ru">RU</option>
-            </select>
+            {/* Швидкий перемикач мови в шапці */}
+            <div className="flex items-center gap-1 border border-white/25 px-3 py-2 text-[11px] tracking-[0.12em] bg-white/[0.02]">
+              <span className="uppercase text-[#d7c6a5] font-medium">{currentLang}</span>
+              <span className="text-white/30">/</span>
+              <button
+                onClick={() => handleLanguageChange(currentLang === 'uk' ? 'en' : 'uk')}
+                className="uppercase text-white/60 transition hover:text-white"
+              >
+                {currentLang === 'uk' ? 'EN' : 'UA'}
+              </button>
+            </div>
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -509,38 +545,42 @@ export default function Home() {
 
       <footer className="bg-[#111211]">
 
-        <div className="mx-auto flex max-w-[1400px] flex-col justify-between gap-10 px-6 py-12 md:flex-row md:items-end lg:px-10">
+        <div className="mx-auto flex max-w-[1400px] flex-col justify-between gap-10 px-6 py-12 md:flex-row md:items-start lg:px-10">
 
           <div>
-
             <div className="text-xl font-semibold tracking-[0.16em]">
               KADEX
             </div>
-
             <div className="mt-2 text-[9px] tracking-[0.25em] text-white/30">
               BUSINESS TECHNOLOGY
             </div>
+          </div>
 
+          {/* Вибір мов у футері */}
+          <div className="flex flex-col gap-3">
+            <span className="text-[10px] tracking-[0.2em] text-[#d7c6a5]">SELECT LANGUAGE</span>
+            <div className="flex flex-wrap gap-2 max-w-[400px]">
+              {languagesList.map((l) => (
+                <button
+                  key={l.code}
+                  onClick={() => handleLanguageChange(l.code)}
+                  className={`border px-2.5 py-1 text-[10px] tracking-[0.1em] transition ${
+                    currentLang === l.code
+                      ? "border-[#d7c6a5] text-[#d7c6a5] bg-white/[0.03]"
+                      : "border-white/10 text-white/50 hover:border-white/40 hover:text-white"
+                  }`}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-8 text-[10px] tracking-[0.15em] text-white/40">
-
-            <a href="#products" className="hover:text-white">
-              PRODUCTS
-            </a>
-
-            <a href="#solutions" className="hover:text-white">
-              SOLUTIONS
-            </a>
-
-            <a href="#about" className="hover:text-white">
-              ABOUT
-            </a>
-
-            <a href="mailto:hello@kadex.vip" className="hover:text-white">
-              HELLO@KADEX.VIP
-            </a>
-
+            <a href="#products" className="hover:text-white">PRODUCTS</a>
+            <a href="#solutions" className="hover:text-white">SOLUTIONS</a>
+            <a href="#about" className="hover:text-white">ABOUT</a>
+            <a href="mailto:hello@kadex.vip" className="hover:text-white">HELLO@KADEX.VIP</a>
           </div>
 
           <div className="text-[9px] tracking-[0.15em] text-white/25">
