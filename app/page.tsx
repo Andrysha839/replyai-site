@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 
-// Stripe Payment Links — swap test_ links for live ones once the live account is verified
+// Stripe Payment Links (live)
 const PAYMENT_LINKS = {
-  plFull: "https://buy.stripe.com/test_bJe6oG1L11tZ1Pwata3cc00",
-  plCity: "https://buy.stripe.com/test_6oUeVcfBR2y39hY7gY3cc01",
+  plFull: "https://buy.stripe.com/4gM7sKdy31Og7yf4XgbZe00",
+  plCity: "https://buy.stripe.com/cNi6oG3Xt3WoaKr61kbZe01",
   plSample: "mailto:hello@kadex.vip?subject=Poland%20Logistics%20Database%20-%20free%20sample%20(25%20companies)",
 };
 
