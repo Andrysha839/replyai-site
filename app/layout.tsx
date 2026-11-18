@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.kadex.vip"),
   title: "KADEX — Verified B2B Data & Business Automation",
   description:
-    "KADEX builds verified B2B databases (Poland logistics, transport and freight companies) and AI automation for small businesses, including ReplyAI for Instagram.",
+    "KADEX builds verified B2B databases (2,100+ Polish logistics, transport and freight companies) and AI automation for small businesses, including ReplyAI for Instagram.",
   openGraph: {
     title: "KADEX — Verified B2B Data & Business Automation",
     description:

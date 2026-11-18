@@ -2,6 +2,13 @@
 
 import { useState, useEffect } from "react";
 
+// Stripe Payment Links — swap test_ links for live ones once the live account is verified
+const PAYMENT_LINKS = {
+  plFull: "https://buy.stripe.com/test_bJe6oG1L11tZ1Pwata3cc00",
+  plCity: "https://buy.stripe.com/test_6oUeVcfBR2y39hY7gY3cc01",
+  plSample: "mailto:hello@kadex.vip?subject=Poland%20Logistics%20Database%20-%20free%20sample%20(25%20companies)",
+};
+
 // Словник перекладів для різних мов
 const translations: Record<string, any> = {
   en: {
@@ -37,7 +44,7 @@ const translations: Record<string, any> = {
       {
         title: "Poland Logistics Database",
         description: "Verified B2B companies across transport, freight forwarding, warehousing and logistics services in Poland.",
-        meta: "250+ VERIFIED COMPANIES",
+        meta: "2,100+ COMPANIES · PHONE · WEBSITE",
         category: "B2B DATA",
         image: "https://images.unsplash.com/photo-1586528116493-da8b8f7f4d2d?auto=format&fit=crop&w=1400&q=85",
         href: "mailto:hello@kadex.vip?subject=Poland%20Logistics%20Database%20-%20request%20sample%20%26%20price",
@@ -101,7 +108,7 @@ const translations: Record<string, any> = {
       {
         title: "Логістична база Польщі",
         description: "Перевірені B2B компанії у сфері транспорту, експедирування, складського господарства та логістичних послуг у Польщі.",
-        meta: "250+ ПЕРЕВІРЕНИХ КОМПАНІЙ",
+        meta: "2 100+ КОМПАНІЙ · ТЕЛЕФОН · САЙТ",
         category: "B2B ДАНІ",
         image: "https://images.unsplash.com/photo-1586528116493-da8b8f7f4d2d?auto=format&fit=crop&w=1400&q=85",
         href: "mailto:hello@kadex.vip?subject=Poland%20Logistics%20Database%20-%20request%20sample%20%26%20price",
@@ -165,7 +172,7 @@ const translations: Record<string, any> = {
       {
         title: "Database Logistica Polonia",
         description: "Aziende B2B verificate nei settori di trasporto, spedizioni e logistica in Polonia.",
-        meta: "250+ AZIENDE VERIFICATE",
+        meta: "2.100+ AZIENDE · TELEFONO · SITO",
         category: "DATI B2B",
         image: "https://images.unsplash.com/photo-1586528116493-da8b8f7f4d2d?auto=format&fit=crop&w=1400&q=85",
         href: "mailto:hello@kadex.vip?subject=Poland%20Logistics%20Database%20-%20request%20sample%20%26%20price",
@@ -227,7 +234,7 @@ const translations: Record<string, any> = {
       {
         title: "Baza Logistyczna Polska",
         description: "Zweryfikowane firmy B2B z branży transportowej i logistycznej w Polsce.",
-        meta: "250+ ZWERYFIKOWANYCH FIRM",
+        meta: "2100+ FIRM · TELEFON · STRONA WWW",
         category: "DANE B2B",
         image: "https://images.unsplash.com/photo-1586528116493-da8b8f7f4d2d?auto=format&fit=crop&w=1400&q=85",
         href: "mailto:hello@kadex.vip?subject=Poland%20Logistics%20Database%20-%20request%20sample%20%26%20price",
@@ -460,7 +467,7 @@ export default function Home() {
           </div>
 
           <div className="grid gap-8 lg:grid-cols-2">
-            {t.productsList.map((product: any) => (
+            {t.productsList.map((product: any, i: number) => (
               <article key={product.title} className="group overflow-hidden border border-white/10 bg-[#181917]">
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <img
@@ -479,9 +486,23 @@ export default function Home() {
                 </div>
                 <div className="p-6 md:p-8">
                   <p className="max-w-[600px] text-sm leading-7 text-white/50">{product.description}</p>
-                  <a href={product.href} className="mt-8 inline-flex items-center gap-4 border-b border-white/20 pb-2 text-[10px] tracking-[0.18em] transition hover:border-[#d7c6a5] hover:text-[#d7c6a5]">
-                    {t.viewDatabase} <span>↗</span>
-                  </a>
+                  {i === 0 ? (
+                    <div className="mt-8 flex flex-wrap items-center gap-4">
+                      <a href={PAYMENT_LINKS.plFull} target="_blank" rel="noopener noreferrer" className="bg-[#d7c6a5] px-5 py-3 text-[11px] font-medium tracking-[0.14em] text-[#111211] transition hover:bg-white">
+                        FULL DATABASE — €49
+                      </a>
+                      <a href={PAYMENT_LINKS.plCity} target="_blank" rel="noopener noreferrer" className="border border-white/25 px-5 py-3 text-[11px] tracking-[0.14em] transition hover:border-[#d7c6a5] hover:text-[#d7c6a5]">
+                        ONE CITY — €19
+                      </a>
+                      <a href={PAYMENT_LINKS.plSample} className="inline-flex items-center gap-2 border-b border-white/20 pb-1 text-[10px] tracking-[0.18em] text-white/60 transition hover:border-[#d7c6a5] hover:text-[#d7c6a5]">
+                        FREE SAMPLE (25) <span>↗</span>
+                      </a>
+                    </div>
+                  ) : (
+                    <a href={product.href} className="mt-8 inline-flex items-center gap-4 border-b border-white/20 pb-2 text-[10px] tracking-[0.18em] transition hover:border-[#d7c6a5] hover:text-[#d7c6a5]">
+                      {t.viewDatabase} <span>↗</span>
+                    </a>
+                  )}
                 </div>
               </article>
             ))}
