@@ -40,7 +40,7 @@ const translations: Record<string, any> = {
         meta: "250+ VERIFIED COMPANIES",
         category: "B2B DATA",
         image: "https://images.unsplash.com/photo-1586528116493-da8b8f7f4d2d?auto=format&fit=crop&w=1400&q=85",
-        href: "#",
+        href: "mailto:hello@kadex.vip?subject=Poland%20Logistics%20Database%20-%20request%20sample%20%26%20price",
       },
       {
         title: "B2B Company Databases",
@@ -48,7 +48,7 @@ const translations: Record<string, any> = {
         meta: "VERIFIED BUSINESS DATA",
         category: "DATA PRODUCTS",
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85",
-        href: "#",
+        href: "mailto:hello@kadex.vip?subject=B2B%20Database%20-%20request",
       },
     ],
     solutionsList: [
@@ -104,7 +104,7 @@ const translations: Record<string, any> = {
         meta: "250+ ПЕРЕВІРЕНИХ КОМПАНІЙ",
         category: "B2B ДАНІ",
         image: "https://images.unsplash.com/photo-1586528116493-da8b8f7f4d2d?auto=format&fit=crop&w=1400&q=85",
-        href: "#",
+        href: "mailto:hello@kadex.vip?subject=Poland%20Logistics%20Database%20-%20request%20sample%20%26%20price",
       },
       {
         title: "Бази B2B Компаній",
@@ -112,7 +112,7 @@ const translations: Record<string, any> = {
         meta: "ПЕРЕВІРЕНІ БІЗНЕС-ДАНІ",
         category: "ПРОДУКТИ ДАНИХ",
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85",
-        href: "#",
+        href: "mailto:hello@kadex.vip?subject=B2B%20Database%20-%20request",
       },
     ],
     solutionsList: [
@@ -168,7 +168,7 @@ const translations: Record<string, any> = {
         meta: "250+ AZIENDE VERIFICATE",
         category: "DATI B2B",
         image: "https://images.unsplash.com/photo-1586528116493-da8b8f7f4d2d?auto=format&fit=crop&w=1400&q=85",
-        href: "#",
+        href: "mailto:hello@kadex.vip?subject=Poland%20Logistics%20Database%20-%20request%20sample%20%26%20price",
       },
       {
         title: "Database Aziendali B2B",
@@ -176,7 +176,7 @@ const translations: Record<string, any> = {
         meta: "DATI AZIENDALI VERIFICATI",
         category: "PRODOTTI DATI",
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85",
-        href: "#",
+        href: "mailto:hello@kadex.vip?subject=B2B%20Database%20-%20request",
       },
     ],
     solutionsList: [
@@ -230,7 +230,7 @@ const translations: Record<string, any> = {
         meta: "250+ ZWERYFIKOWANYCH FIRM",
         category: "DANE B2B",
         image: "https://images.unsplash.com/photo-1586528116493-da8b8f7f4d2d?auto=format&fit=crop&w=1400&q=85",
-        href: "#",
+        href: "mailto:hello@kadex.vip?subject=Poland%20Logistics%20Database%20-%20request%20sample%20%26%20price",
       },
       {
         title: "Bazy Firm B2B",
@@ -238,7 +238,7 @@ const translations: Record<string, any> = {
         meta: "ZWERYFIKOWANE DANE",
         category: "PRODUKTY DANYCH",
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85",
-        href: "#",
+        href: "mailto:hello@kadex.vip?subject=B2B%20Database%20-%20request",
       },
     ],
     solutionsList: [
@@ -339,12 +339,12 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[#111211] text-[#f1eee7] selection:bg-[#d7c6a5] selection:text-black">
+    <main id="top" className="min-h-screen bg-[#111211] text-[#f1eee7] selection:bg-[#d7c6a5] selection:text-black">
 
       {/* ================= HEADER ================= */}
       <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-[#111211]/90 backdrop-blur-xl">
         <div className="mx-auto flex h-[78px] max-w-[1400px] items-center justify-between px-6 lg:px-10">
-          <a href="#" className="group flex items-center gap-3">
+          <a href="#top" className="group flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center border border-white/20 bg-white/[0.03]">
               <span className="text-lg font-bold tracking-[-0.08em]">K</span>
             </div>

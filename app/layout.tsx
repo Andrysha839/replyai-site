@@ -13,8 +13,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KADEX",
-  description: "KADEX",
+  metadataBase: new URL("https://www.kadex.vip"),
+  title: "KADEX — Verified B2B Data & Business Automation",
+  description:
+    "KADEX builds verified B2B databases (Poland logistics, transport and freight companies) and AI automation for small businesses, including ReplyAI for Instagram.",
+  openGraph: {
+    title: "KADEX — Verified B2B Data & Business Automation",
+    description:
+      "Verified B2B databases and AI automation tools for small businesses.",
+    url: "https://www.kadex.vip",
+    siteName: "KADEX",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
