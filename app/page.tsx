@@ -71,6 +71,17 @@ const translations: Record<string, any> = {
         description: "An internal business automation system for companies with employees. Managers create schedules while employees manage shifts, days off, availability and work information.",
         points: ["Monthly employee schedules", "Shift exchange requests", "Days-off management", "Worked hours & earnings", "Employee contact information"],
       },
+      {
+        number: "03",
+        name: "StreamCut",
+        label: "CLIPS FOR STREAMERS",
+        tagline: "Shorts & TikToks from your streams, done for you",
+        description: "We watch your streams live, cut the best moments within minutes, and post vertical clips with captions, hooks and censorship to YouTube Shorts and TikTok — every day, without you lifting a finger.",
+        points: ["Fresh clips while the moment is still hot (10–20 min after it happens)", "Facecam + gameplay layout, auto-captions, profanity bleep, 18+ blur", "AI-picked moments, titles written for the Shorts feed", "Daily report: what was posted and how it performs"],
+        pricing: "From €199/month · First week free · Cancel anytime",
+        cta: { label: "Get a free trial week", href: "mailto:hello@kadex.vip?subject=StreamCut%20trial" },
+        example: { label: "See our work on TikTok", href: "https://www.tiktok.com/@five.star.moments6" },
+      },
     ],
   },
   uk: {
@@ -134,6 +145,17 @@ const translations: Record<string, any> = {
         label: "АВТОМАТИЗАЦІЯ ПЕРСОНАЛУ",
         description: "Система внутрішньої автоматизації для компаній із працівниками. Менеджери створюють графіки, а співробітники керують змінами, вихідними, доступністю та робочою інформацією.",
         points: ["Місячні графіки працівників", "Запити на обмін змінами", "Управління вихідними", "Відпрацьовані години та заробіток", "Контактні дані співробітників"],
+      },
+      {
+        number: "03",
+        name: "StreamCut",
+        label: "КЛІПИ ДЛЯ СТРІМЕРІВ",
+        tagline: "Shorts і TikTok з ваших стрімів — під ключ",
+        description: "Ми дивимося ваші стріми наживо, за лічені хвилини вирізаємо найкращі моменти й публікуємо вертикальні кліпи із субтитрами, хуками та цензурою в YouTube Shorts і TikTok — щодня, без жодних зусиль з вашого боку.",
+        points: ["Свіжі кліпи, поки момент ще гарячий (через 10–20 хв після нього)", "Макет «вебкамера + гра», автосубтитри, запікування мату, блюр 18+", "Моменти обирає ШІ, назви пишемо під стрічку Shorts", "Щоденний звіт: що опубліковано і як воно працює"],
+        pricing: "Від €199/місяць · Перший тиждень безкоштовно · Скасування будь-коли",
+        cta: { label: "Отримати безкоштовний тиждень", href: "mailto:hello@kadex.vip?subject=StreamCut%20trial" },
+        example: { label: "Приклади наших робіт у TikTok", href: "https://www.tiktok.com/@five.star.moments6" },
       },
     ],
   },
@@ -199,6 +221,17 @@ const translations: Record<string, any> = {
         description: "Sistema di automazione interna per la gestione di turni, ferie e orari dei dipendenti.",
         points: ["Pianificazione turni", "Scambio turni", "Gestione ferie", "Ore lavorate", "Contatti dipendenti"],
       },
+      {
+        number: "03",
+        name: "StreamCut",
+        label: "CLIP PER STREAMER",
+        tagline: "Shorts e TikTok dalle tue live, chiavi in mano",
+        description: "Seguiamo le tue live in diretta, tagliamo i momenti migliori in pochi minuti e pubblichiamo clip verticali con sottotitoli, hook e censura su YouTube Shorts e TikTok — ogni giorno, senza che tu debba muovere un dito.",
+        points: ["Clip fresche finché il momento è ancora caldo (10–20 min dopo)", "Layout facecam + gameplay, sottotitoli automatici, bip sulle parolacce, blur 18+", "Momenti scelti dall'IA, titoli scritti per il feed di Shorts", "Report giornaliero: cosa è stato pubblicato e come sta andando"],
+        pricing: "Da €199/mese · Prima settimana gratis · Disdici quando vuoi",
+        cta: { label: "Prova gratis per una settimana", href: "mailto:hello@kadex.vip?subject=StreamCut%20trial" },
+        example: { label: "Guarda i nostri lavori su TikTok", href: "https://www.tiktok.com/@five.star.moments6" },
+      },
     ],
   },
   pl: {
@@ -260,6 +293,17 @@ const translations: Record<string, any> = {
         label: "AUTOMATYZACJA PRACY",
         description: "System zarządzania grafikami, zmianami i czasem pracy pracowników.",
         points: ["Grafiki miesięczne", "Wymiana zmian", "Zarządzanie urlopami", "Przepracowane godziny", "Kontakty"],
+      },
+      {
+        number: "03",
+        name: "StreamCut",
+        label: "KLIPY DLA STREAMERÓW",
+        tagline: "Shortsy i TikToki z Twoich streamów — pod klucz",
+        description: "Oglądamy Twoje streamy na żywo, w kilka minut wycinamy najlepsze momenty i publikujemy pionowe klipy z napisami, hookami i cenzurą na YouTube Shorts i TikToku — codziennie, bez żadnego wysiłku z Twojej strony.",
+        points: ["Świeże klipy, póki moment jest gorący (10–20 min po nim)", "Układ kamerka + rozgrywka, automatyczne napisy, wypikanie przekleństw, blur 18+", "Momenty wybiera AI, tytuły pisane pod feed Shorts", "Codzienny raport: co opublikowano i jak sobie radzi"],
+        pricing: "Od 199 €/miesiąc · Pierwszy tydzień gratis · Rezygnacja w każdej chwili",
+        cta: { label: "Darmowy tydzień próbny", href: "mailto:hello@kadex.vip?subject=StreamCut%20trial" },
+        example: { label: "Zobacz nasze klipy na TikToku", href: "https://www.tiktok.com/@five.star.moments6" },
       },
     ],
   },
@@ -519,6 +563,9 @@ export default function Home() {
                 <div>
                   <span className="text-[9px] tracking-[0.2em] text-[#d7c6a5]">{solution.label}</span>
                   <h3 className="mt-4 text-4xl font-medium tracking-[-0.05em] md:text-5xl">{solution.name}</h3>
+                  {solution.tagline && (
+                    <p className="mt-4 max-w-[320px] text-sm leading-6 text-white/70">{solution.tagline}</p>
+                  )}
                 </div>
                 <div>
                   <p className="max-w-[650px] text-sm leading-7 text-white/55">{solution.description}</p>
@@ -530,6 +577,23 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
+                  {solution.pricing && (
+                    <p className="mt-8 text-[11px] tracking-[0.14em] text-[#d7c6a5]">{solution.pricing}</p>
+                  )}
+                  {(solution.cta || solution.example) && (
+                    <div className="mt-6 flex flex-wrap items-center gap-5">
+                      {solution.cta && (
+                        <a href={solution.cta.href} className="bg-[#d7c6a5] px-5 py-3 text-[11px] font-medium tracking-[0.14em] text-[#111211] transition hover:bg-white">
+                          {solution.cta.label}
+                        </a>
+                      )}
+                      {solution.example && (
+                        <a href={solution.example.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border-b border-white/20 pb-1 text-[10px] tracking-[0.18em] text-white/60 transition hover:border-[#d7c6a5] hover:text-[#d7c6a5]">
+                          {solution.example.label} <span>↗</span>
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
               </article>
             ))}
